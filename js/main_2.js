@@ -9,7 +9,7 @@ const options = {
 
 
 
-const observer = new IntersectionObserver(function(entries) {
+const observer = new IntersectionObserver(function(entries, observer) {
     entries.forEach(function(entry) {
         const utilitySection = document.querySelector(`[data-target="${entry.target.id}"]`);
         const visible = utilitySection.querySelector('.info__visible');
@@ -17,15 +17,24 @@ const observer = new IntersectionObserver(function(entries) {
         const x = utilitySection.querySelector('.info__x');
         const y = utilitySection.querySelector('.info__y');
 
+        time.innerHTML = 'NO';
+
         if (entry.isIntersecting) {
             visible.classList.add('true');
             visible.innerHTML = 'YES';
+            entry.target.classList.add('inverted');
+            observer.unobserve(entry.target);
+            time.innerHTML = 'NO';
+            time.classList.add('false');
+            time.classList.remove('true');
         } else {
             visible.classList.remove('true');
             visible.innerHTML = 'NO';
+            time.classList.add('true');
+            time.classList.remove('false');
+            time.innerHTML = 'YES';
         }
 
-        time.innerHTML = `${(parseFloat(entry.time) / 10).toFixed(0)} ms`;
         x.innerHTML = entry.boundingClientRect.x;
         y.innerHTML = entry.boundingClientRect.y;
 
