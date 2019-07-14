@@ -123,6 +123,7 @@ img {
 
     &__left {
         position: fixed;
+        display: flex;
         top: 150px;
         left: 0;
         bottom: 150px;
@@ -222,3 +223,11 @@ img {
     background-color: $color-yellow;
 }
 
+
+
+.lazyload {
+    width: 120px;
+    height: 30px;
+    margin: 0 auto;
+    display: block;
+}
