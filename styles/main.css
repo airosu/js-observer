@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+img {
+  display: block;
+}
+
 .utility {
   width: 100%;
   height: 100%;
@@ -150,6 +154,27 @@
 
 .section.inverted .section__text-container h1, .section.inverted .section__text-container p {
   color: #dadada;
+}
+
+.section__image-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.section__image {
+  max-width: 400px;
+}
+
+.section__image--left {
+  margin-left: 50px;
+  margin-right: auto;
+}
+
+.section__image--right {
+  margin-right: 50px;
+  margin-left: auto;
 }
 
 .section-1 {

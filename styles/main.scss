@@ -17,6 +17,10 @@ $color-grey: #333;
     padding: 0;
 }
 
+img {
+    display: block;
+}
+
 
 
 // =====================================  UTILITY  =======================================
@@ -68,7 +72,7 @@ $color-grey: #333;
 
     &__time {
         color: $color-white;
-        
+
         &.false {
             color: darkred;
         }
@@ -177,6 +181,24 @@ $color-grey: #333;
                     color: #dadada;
                 }
             }
+        }
+    }
+
+
+    &__image-container {
+        width: 100%;
+        display: flex;
+    }
+    &__image {
+        max-width: 400px;
+
+        &--left {
+            margin-left: 50px;
+            margin-right: auto;
+        }
+        &--right {
+            margin-right: 50px;
+            margin-left: auto;
         }
     }
 }
