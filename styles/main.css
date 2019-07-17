@@ -104,6 +104,9 @@ img {
 
 .overlay__left {
   position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   top: 150px;
   left: 0;
   bottom: 150px;
@@ -192,5 +195,12 @@ img {
 
 .section-4 {
   background-color: #ffffe6;
+}
+
+.lazyload {
+  width: 120px;
+  height: 30px;
+  margin: 0 auto;
+  display: block;
 }
 /*# sourceMappingURL=main.css.map */

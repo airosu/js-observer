@@ -1,6 +1,7 @@
 
 const sections = document.querySelectorAll('section');
 
+
 const options = {
     root:       null,                       // default = null (viewport)
     threshold:  0,                          // from 0 to 1, how much % of the item is showing
@@ -16,16 +17,25 @@ const observer = new IntersectionObserver(function(entries, observer) {
         const time = utilitySection.querySelector('.info__time');
         const x = utilitySection.querySelector('.info__x');
         const y = utilitySection.querySelector('.info__y');
+        const lazyStatus = document.getElementById('lazyload').getAttribute('data-status');
 
         time.innerHTML = 'NO';
 
         if (entry.isIntersecting) {
-            visible.classList.add('true');
-            visible.innerHTML = 'YES';
-            observer.unobserve(entry.target);
-            time.innerHTML = 'NO';
-            time.classList.add('false');
-            time.classList.remove('true');
+            const image = entry.target.querySelector('[data-src]');
+            const src = image.getAttribute('data-src');
+
+            if (lazyStatus == 'on') {
+                if (src) {
+                    image.src = src;
+                }
+                visible.classList.add('true');
+                visible.innerHTML = 'YES';
+                observer.unobserve(entry.target);
+                time.innerHTML = 'NO';
+                time.classList.add('false');
+                time.classList.remove('true');
+            }
         } else {
             visible.classList.remove('true');
             visible.innerHTML = 'NO';
@@ -46,4 +56,24 @@ const observer = new IntersectionObserver(function(entries, observer) {
 sections.forEach(function(section) {
     observer.observe(section);
 });
+
+
+
+
+// Button
+
+const lazyLoadButton = document.getElementById('lazyload');
+
+lazyLoadButton.addEventListener('mouseup', e => {
+    let status = e.target.getAttribute('data-status');
+
+    if (status === 'off') {
+        e.target.dataset.status = 'on';
+        e.target.innerHTML = 'Lazyload: ON'
+    } else if (status === 'on') {
+        e.target.dataset.status = 'off';
+        e.target.innerHTML = 'Lazyload: OFF'
+    }
+});
+
 
